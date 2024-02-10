@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Web Personal</title>
+    <title>{% block title %}{% endblock %} | Mi Web Personal</title>
 </head>
 <body>
     <!--Head & Menu-->
     <h1>Mi web personal</h1>
     <ul>
-        <li><a href="/">Portada</a></li>    
-        <li><a href="/about/">About me</a></li>
-        <li><a href="/portfolio/">Portfolio</a></li>
-        <li><a href="/contact/">Contact</a></li>    
+        <li><a href="{% url 'home' %}">Portada</a></li>    
+        <li><a href="{% url 'about' %}">About me</a></li>
+        <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>    
     </ul>
     <!--Content-->
     {% block content %}{% endblock %}
