@@ -9,11 +9,12 @@
     <title>{% block title %}{% endblock %} | Juan Pérez</title>
 
     <!-- Estilos y fuentes del template  -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    {% load static %}
+    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="{% static 'core/css/clean-blog.min.css' %}" rel="stylesheet">
 
   </head>
 
@@ -47,14 +48,13 @@
     </nav>
 
     <!-- Cabecera -->
-    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+    <header class="masthead" style="background-image: url('{% block background %}{% endblock %}')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Juan Pérez</h1>
-              <span class="subheading">Ingeniero Industrial</span>
+                {% block headers %}{% endblock %}
             </div>
           </div>
         </div>
@@ -62,7 +62,11 @@
     </header>
     
     <!-- Contenido -->
-    {% block content %}{% endblock %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% if request.path != "/" %} <hr> {% endif %}
 
     <!-- Pié de página -->
     <footer>
@@ -87,7 +91,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="#">
+                <a  ef="#">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
